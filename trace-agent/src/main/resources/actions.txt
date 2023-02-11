@@ -1,0 +1,1 @@
+elapsed_time_in_ms REGEXP(.*spark.*) REGEXP(.*[a-z].*)  isDateLogged:true

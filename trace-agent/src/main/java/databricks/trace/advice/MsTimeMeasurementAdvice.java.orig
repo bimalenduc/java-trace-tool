@@ -1,0 +1,65 @@
+package databricks.trace.advice;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.function.*;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import net.bytebuddy.asm.Advice;
+import java.util.Objects;
+
+public class MsTimeMeasurementAdvice {
+
+  @Advice.OnMethodEnter
+  public static long enter(
+      @Advice.Origin String origin,
+      @Advice.AllArguments Object[] args,
+      @LogFileName String logFileName,
+      @ThreadNames List<String> tnames) {
+    System.out.println("DEBUG ");
+    String s = origin + " called, args:  " + Arrays.toString(args);
+    String fileName = (logFileName != null) ? logFileName : "/tmp/trace-output.txt";
+    String tname = Thread.currentThread().getName();
+    String d = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+    System.out.println("DEBUG " + s);
+    try {
+      FileWriter fw = new FileWriter(fileName, true);
+      fw.write(d + " Thread[ " + tname + " ] " + s + "\n");
+      fw.close();
+    } catch (Exception e) {
+      e.getStackTrace();
+    }
+    return System.currentTimeMillis();
+  }
+
+  @Advice.OnMethodExit(onThrowable = Throwable.class)
+  public static void exit(
+      @Advice.Enter long start,
+      @Advice.Origin String origin,
+      @Advice.Return Object returned,
+      @LogFileName String logFileName,
+      @ThreadNames List<String> tnames) {
+    long executionTime = System.currentTimeMillis() - start;
+    String ret = null;
+    if (!Objects.isNull(returned) && returned != null) ret = returned.toString();
+    else ret = new String("null return value");
+
+    String s = origin + " returned: " + ret + " took " + executionTime + " (ms) to execute";
+    for (String l : tnames) s += l;
+    System.out.println("DEBUG " + s);
+    String fileName = (logFileName != null) ? logFileName : "/tmp/trace-output.txt";
+    String tname = Thread.currentThread().getName();
+    String d = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+    try {
+      FileWriter fw = new FileWriter(fileName, true);
+      fw.write(d + " Thread[ " + tname + " ] " + s + "\n");
+      fw.close();
+    } catch (Exception e) {
+      e.getStackTrace();
+    }
+  }
+}
