@@ -1,6 +1,6 @@
 # Trace HotSwap Agent
 
-### This is a java agent which attaches to a running jvm and can collect various Instrumentation info.
+### This is a java agent which attaches to a running jvm and write various Instrumentation info to stderr
 
 Name on fucntion getting called
 The arguments being passed to the function
