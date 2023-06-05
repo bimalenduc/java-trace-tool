@@ -103,7 +103,7 @@ public class MsTimeMeasurementAdvice {
       @Advice.Enter long start,
       @ThreadName String threadName,
       @Advice.Origin String origin,
-      @Advice.Return String retValue) {
+      @Advice.Return Object retValue) {
     long executionTime = System.currentTimeMillis() - start;
     String tname = Thread.currentThread().getName();
     if (threadName == null || tname.contains(threadName))
@@ -125,6 +125,6 @@ public class MsTimeMeasurementAdvice {
                 + " took "
                 + executionTime
                 + " (ms) to execute. Returning "
-                + retValue);
+                + retValue.toString());
   }
 }
