@@ -49,7 +49,7 @@ Example:-
 
 *Thread[Thread-69 ] public org.apache.spark.sql.catalyst.plans.logical.LogicalPlan org.apache.spark.sql.catalyst.optimizer.SimplifyCasts$.apply(org.apache.spark.sql.catalyst.plans.logical.LogicalPlan) called with [DeserializeToObject createexternalrow(count(1)#12.toString, StructField(count(1),StringType,false)), obj#368: org.apache.spark.sql.Row
 +- LocalRelation <empty>, [count(1)#12]
-]
+]*
 
-Thread[ Thread-69 ] public org.apache.spark.sql.catalyst.plans.logical.LogicalPlan org.apache.spark.sql.catalyst.optimizer.SimplifyCasts$.apply(org.apache.spark.sql.catalyst.plans.logical.LogicalPlan) took 0 (ms) to execute. Returning DeserializeToObject createexternalrow(count(1)#12.toString, StructField(count(1),StringType,false)), obj#368: org.apache.spark.sql.Row
+*Thread[ Thread-69 ] public org.apache.spark.sql.catalyst.plans.logical.LogicalPlan org.apache.spark.sql.catalyst.optimizer.SimplifyCasts$.apply(org.apache.spark.sql.catalyst.plans.logical.LogicalPlan) took 0 (ms) to execute. Returning DeserializeToObject createexternalrow(count(1)#12.toString, StructField(count(1),StringType,false)), obj#368: org.apache.spark.sql.Row
 +- LocalRelation <empty>, [count(1)#12]*
