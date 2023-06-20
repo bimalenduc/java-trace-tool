@@ -1,30 +1,46 @@
-# Trace HotSwap Agent
+#Trace HotSwap Agent
+This is a java agent which attaches to a running jvm and outputs information for selected methods. 
+It prints the following details when a matching method from matching class is called :
 
-### This is a java agent which attaches to a running jvm and write various Instrumentation info to stderr
+Thread name
 
-Name on fucntion getting called
-The arguments being passed to the function
-The thread name 
-Name of function being returned and the time it took to finish
+Method name
 
+The arguments it is called with ( when the method is called)
 
-### Usage  jtrace [-d | -c | -p pid] [-t threadName] [ -g groupName] <className> <methodName
+The return value and time it took to complete ( when the method returns)
 
-  -d  trace driver process
-  
-  -e  trace executor process 
-  
-  -i  pid to trace any other jvm pid 
-  
-  -t  threadName   Thread name to be traced.
-  
-  -g groupName The groupName will be name of a set of class and functions which will gather details for specific functionality. 
-     For example we have a group named kafka which is a set of methods and function which will capture the required details of important kafka client functions. 
-     
-  className regex class name : A regex which matches all the class to traced
-  
-  regex method name: A regex matching all the method to be traced  of the class 
-  
+      Sample oputput is in following form and can be found in stderr log
 
+     [ThreadName] <Function Name> called with [ arguments]
 
+     OR
 
+     [ThreadName] <Function Name> took 0 (ms) to execute. Returning < return values>
+
+The github link to code is  GitHub - bimalenduc/java-trace-tool: Tool to trace java methods in JVM 
+
+The built binary can be downloaded from the release link: https://github.com/bimalenduc/java-trace-tool/releases/download/v1.0.0/java-trace-tool.tar.gz
+
+ 
+
+ ### Usage:-
+
+The tool can be invoked from command line using the following command
+
+#./jtrace [-d | -c | -p pid] [-t threadName] [ -g groupName] <className> <methodName>
+-d  : This option is used to trace the driver process
+
+-e  : Trace the executor process
+
+ -i  : pid To trace any jvm process using its pid
+
+-t   : threadName trace only the thread having the argument threadName in its threadname
+
+-g  : groupName This option is not functional yet. It is supposed to be a name which will trace a predefined set of methods form certain classes to address any specific kind of issue. For ex:- say group name kafka can trace some important kafka api to gather the time spent in those API calls.
+
+className : This is a mandatory argument. It is a regular expression to match the class name which needs to be traced. 
+
+methodName : This is a mandatory argument. It is a regular expression to match any methods from the any of above matching classnames. 
+
+The command loads the java agent and prints the information of all matching methods from the matching class names.
