@@ -6,7 +6,7 @@ For each matching method of the following details will be printed in stderr:
 
 Thread name, Method name, The arguments it is called with ( when the method is called), The return value and time it took to complete ( when the method returns)
 
-Sample output:
+Sample output:<br />   
 Thread[WRAPPER-ReplId-f8fce-deb18-90c2d ] public java.lang.String org.apache.spark.sql.catalyst.plans.logical.EventTimeWatermark$.delayKey() called with []
 Thread[ WRAPPER-ReplId-f8fce-deb18-90c2d ] public java.lang.String org.apache.spark.sql.catalyst.plans.logical.EventTimeWatermark$.delayKey() took 0 (ms) to execute. Returning spark.watermarkDelayMs
 
@@ -16,7 +16,6 @@ To run it on a databricks notebook or web terminal you can use this sample code 
 
 %sh<br />   
 cd /databricks/driver/<br />   
-
 wget https://github.com/bimalenduc/java-trace-tool/releases/download/v1.0.0/java-trace-tool.tar.gz<br />   
 tar xvfz java-trace-tool.tar.gz 2>/dev/null<br />   
 cd java-trace-tool<br />   
