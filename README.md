@@ -6,13 +6,13 @@ For each matching method of the following details will be printed in stderr:
 
 Thread name, Method name, The arguments it is called with ( when the method is called), The return value and time it took to complete ( when the method returns)
 
-### Sample output:<br />   
+## Sample output:<br />   
 Thread[WRAPPER-ReplId-f8fce-deb18-90c2d ] public java.lang.String org.apache.spark.sql.catalyst.plans.logical.EventTimeWatermark$.delayKey() called with []
 Thread[ WRAPPER-ReplId-f8fce-deb18-90c2d ] public java.lang.String org.apache.spark.sql.catalyst.plans.logical.EventTimeWatermark$.delayKey() took 0 (ms) to execute. Returning spark.watermarkDelayMs
 
 The already built binary can be downloaded from the release link: https://github.com/bimalenduc/java-trace-tool/releases/download/v1.0.0/java-trace-tool.tar.gz
 
-### To run it on a databricks notebook or web terminal you can use these steps :
+## To run it on a databricks notebook or web terminal you can use these steps :
 
 %sh<br />   
 cd /databricks/driver/<br />   
@@ -25,7 +25,7 @@ echo "Running command "<br />
 Change the class name and method name regular expression to the class and method name you want to trace.
 
 
- ### Usage of jtrace command:-
+ ## Usage of jtrace command:-
 
 The tool can be invoked from command line using the following command
 
@@ -46,7 +46,7 @@ methodName : This is a mandatory argument. It is a regular expression to match a
 
 The command loads the java agent and prints the information of all matching methods from the matching class names.
 
-Example:-
+###Example:-
 
 *Thread[Thread-69 ] public org.apache.spark.sql.catalyst.plans.logical.LogicalPlan org.apache.spark.sql.catalyst.optimizer.SimplifyCasts$.apply(org.apache.spark.sql.catalyst.plans.logical.LogicalPlan) called with [DeserializeToObject createexternalrow(count(1)#12.toString, StructField(count(1),StringType,false)), obj#368: org.apache.spark.sql.Row
 +- LocalRelation <empty>, [count(1)#12]
