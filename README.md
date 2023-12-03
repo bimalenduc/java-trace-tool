@@ -1,28 +1,29 @@
 # Trace HotSwap Agent
-This is a java agent which attaches to a running jvm and outputs information for selected methods. 
-It prints the following details when a matching method from matching class is called :
+This is a java agent which attaches to a running jvm and outputs information for selected methods from selected class. 
+The class and the methods to be traced is provided in command line using regular expression.
 
-Thread name
+For each matching method of the following details will be printed in stderr:
 
-Method name
+Thread name, Method name, The arguments it is called with ( when the method is called), The return value and time it took to complete ( when the method returns)
 
-The arguments it is called with ( when the method is called)
+Sample output:
+Thread[WRAPPER-ReplId-f8fce-deb18-90c2d ] public java.lang.String org.apache.spark.sql.catalyst.plans.logical.EventTimeWatermark$.delayKey() called with []
+Thread[ WRAPPER-ReplId-f8fce-deb18-90c2d ] public java.lang.String org.apache.spark.sql.catalyst.plans.logical.EventTimeWatermark$.delayKey() took 0 (ms) to execute. Returning spark.watermarkDelayMs
 
-The return value and time it took to complete ( when the method returns)
+The already built binary can be downloaded from the release link: https://github.com/bimalenduc/java-trace-tool/releases/download/v1.0.0/java-trace-tool.tar.gz
 
-      Sample oputput is in following form and can be found in stderr log
+To run it on a databricks notebook or web terminal you can use this sample code :
 
-     [ThreadName] <Function Name> called with [ arguments]
+%sh
+cd /databricks/driver/
+wget https://github.com/bimalenduc/java-trace-tool/releases/download/v1.0.0/java-trace-tool.tar.gz
+tar xvfz java-trace-tool.tar.gz 2>/dev/null
+cd java-trace-tool
+echo "Running command "
+./jtrace.sh -d   "org.apache.spark.sql.catalyst.plans.[^EventTimeWatermark].*" "[a-z,A-Z].*"
 
-     OR
+Change the class name and method name regular expression to the class and method name you want to trace.
 
-     [ThreadName] <Function Name> took 0 (ms) to execute. Returning < return values>
-
-The github link to code is  GitHub - bimalenduc/java-trace-tool: Tool to trace java methods in JVM 
-
-The built binary can be downloaded from the release link: https://github.com/bimalenduc/java-trace-tool/releases/download/v1.0.0/java-trace-tool.tar.gz
-
- 
 
  ### Usage:-
 
