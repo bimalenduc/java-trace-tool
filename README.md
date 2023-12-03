@@ -6,13 +6,13 @@ For each matching method of the following details will be printed in stderr:
 
 Thread name, Method name, The arguments it is called with ( when the method is called), The return value and time it took to complete ( when the method returns)
 
-Sample output:<br />   
+### Sample output:<br />   
 Thread[WRAPPER-ReplId-f8fce-deb18-90c2d ] public java.lang.String org.apache.spark.sql.catalyst.plans.logical.EventTimeWatermark$.delayKey() called with []
 Thread[ WRAPPER-ReplId-f8fce-deb18-90c2d ] public java.lang.String org.apache.spark.sql.catalyst.plans.logical.EventTimeWatermark$.delayKey() took 0 (ms) to execute. Returning spark.watermarkDelayMs
 
 The already built binary can be downloaded from the release link: https://github.com/bimalenduc/java-trace-tool/releases/download/v1.0.0/java-trace-tool.tar.gz
 
-To run it on a databricks notebook or web terminal you can use this sample code :
+### To run it on a databricks notebook or web terminal you can use these steps :
 
 %sh<br />   
 cd /databricks/driver/<br />   
@@ -25,7 +25,7 @@ echo "Running command "<br />
 Change the class name and method name regular expression to the class and method name you want to trace.
 
 
- ### Usage:-
+ ### Usage of jtrace command:-
 
 The tool can be invoked from command line using the following command
 
