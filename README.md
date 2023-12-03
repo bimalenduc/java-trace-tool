@@ -14,13 +14,14 @@ The already built binary can be downloaded from the release link: https://github
 
 To run it on a databricks notebook or web terminal you can use this sample code :
 
-%sh
-cd /databricks/driver/
-wget https://github.com/bimalenduc/java-trace-tool/releases/download/v1.0.0/java-trace-tool.tar.gz
-tar xvfz java-trace-tool.tar.gz 2>/dev/null
-cd java-trace-tool
-echo "Running command "
-./jtrace.sh -d   "org.apache.spark.sql.catalyst.plans.[^EventTimeWatermark].*" "[a-z,A-Z].*"
+%sh<br />   
+cd /databricks/driver/<br />   
+
+wget https://github.com/bimalenduc/java-trace-tool/releases/download/v1.0.0/java-trace-tool.tar.gz<br />   
+tar xvfz java-trace-tool.tar.gz 2>/dev/null<br />   
+cd java-trace-tool<br />   
+echo "Running command "<br />   
+./jtrace.sh -d   "org.apache.spark.sql.catalyst.plans.[^EventTimeWatermark].*" "[a-z,A-Z].*"<br />   
 
 Change the class name and method name regular expression to the class and method name you want to trace.
 
